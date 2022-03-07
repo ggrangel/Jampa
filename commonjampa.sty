@@ -1,0 +1,78 @@
+\ProvidesPackage{commonjampa}
+
+\RequirePackage{ifthen}
+
+
+%% ================================================== template colours
+\definecolor{jampa@colour@blue}{RGB}{0  ,  50,  200}
+\definecolor{jampa@colour@white}{RGB}{250, 250, 250}
+\definecolor{jampa@colour@orange}{RGB}{244, 110,  50}
+\definecolor{jampa@colour@black}{RGB}{0, 0,  0}
+% \definecolor{jampa@colour@purple}{RGB}{176,  32, 121}
+% \definecolor{jampa@colour@yellow}{RGB}{228, 225,  73}
+\definecolor{jampa@colour@green}{RGB}{0, 150, 50}
+
+%% ================================================== colours status: normal or inverted
+\def\jampa@colours@inverted{false} % set colour status initial value
+
+
+%% ================================================== set colours
+\def\jampa@setColours{
+  \ifthenelse{ \equal{\jampa@colours@inverted}{false} }{
+    %% -------------------------------------------------- normal colours
+    \definecolor{jampa@colour@plaintext}{named}{jampa@colour@blue}
+    \definecolor{jampa@colour@alerttext}{named}{jampa@colour@orange}
+    \definecolor{jampa@colour@exampletext}{named}{jampa@colour@green}
+    \definecolor{jampa@colour@headertext}{named}{jampa@colour@blue}
+    \definecolor{jampa@colour@background}{named}{jampa@colour@white}
+    %% -------------------------------------------------- inverted colours
+    \definecolor{jampa@colour@plaintextinverted}{named}{jampa@colour@white}
+    \definecolor{jampa@colour@alerttextinverted}{named}{jampa@colour@orange}
+    \definecolor{jampa@colour@exampletextinverted}{named}{jampa@colour@green}
+    \definecolor{jampa@colour@headertextinverted}{named}{jampa@colour@white}
+    \definecolor{jampa@colour@backgroundinverted}{named}{jampa@colour@blue}
+  }{
+    %% -------------------------------------------------- inverted colours
+    \definecolor{jampa@colour@plaintextinverted}{named}{jampa@colour@blue}
+    \definecolor{jampa@colour@alerttextinverted}{named}{jampa@colour@orange}
+    \definecolor{jampa@colour@exampletextinverted}{named}{jampa@colour@green}
+    \definecolor{jampa@colour@headertextinverted}{named}{jampa@colour@blue}
+    \definecolor{jampa@colour@backgroundinverted}{named}{jampa@colour@white}
+    %% -------------------------------------------------- normal colours
+    \definecolor{jampa@colour@plaintext}{named}{jampa@colour@white}
+    \definecolor{jampa@colour@alerttext}{named}{jampa@colour@orange}
+    \definecolor{jampa@colour@exampletext}{named}{jampa@colour@green}
+    \definecolor{jampa@colour@headertext}{named}{jampa@colour@white}
+    \definecolor{jampa@colour@background}{named}{jampa@colour@blue}
+  }
+}
+
+\jampa@setColours % set colours initial value
+
+
+%% ================================================== public macros
+\def\colourStatusNormal{%
+  \def\jampa@colours@inverted{false}%
+  \jampa@setColours%
+  \usebeamercolor[fg]{normal text}
+}
+
+\def\colourStatusInverted{%
+  \def\jampa@colours@inverted{true}%
+  \jampa@setColours%
+  \usebeamercolor[fg]{normal text}
+}
+
+\def\toggleColours{
+  \ifthenelse{ \equal{\jampa@colours@inverted}{true} }{
+    \colourStatusNormal
+  }{
+    \colourStatusInverted
+  }
+}
+
+\def\backgroundImage#1{
+  \def\jampa@background@image{#1}
+}
+
+\backgroundImage{}

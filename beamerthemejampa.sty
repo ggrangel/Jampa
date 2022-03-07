@@ -1,0 +1,18 @@
+\ProvidesPackage{beamerthemejampa}
+
+\RequirePackage{beamerbasethemes}
+
+%% ================================================== jampa options
+\def\beamer@jampa@titlegraphic@text{}
+\DeclareOptionBeamer{titlegraphictext}{\def\beamer@jampa@titlegraphic@text{#1}}
+%
+\ProcessOptionsBeamer
+
+%% ================================================== base theme
+\usetheme{default}
+
+%% ================================================== jampa theme
+\usefonttheme{jampa}
+\usecolortheme{jampa}
+\useinnertheme{jampa}
+\useoutertheme{jampa}

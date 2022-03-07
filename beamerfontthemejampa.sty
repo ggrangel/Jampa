@@ -1,0 +1,148 @@
+\ProvidesPackage{beamerfontthemejampa}
+
+%% ================================================== beamer font definitions
+\mode<presentation>
+
+% From RELSIZE.STY ver 2.0 Mar 15, 1995 by Donald Arseneau:
+% To refresh your memory, the font sizing commands in LaTeX are, in order:
+% \tiny, \scriptsize, \footnotesize, \small, \normalsize, \large, \Large,
+% \LARGE, \huge, \Huge.
+% fontseries: l=light, m=normal, b=bold, eb = black
+
+%% --------------------------------------------------
+\setbeamerfont{normal text}{family=\rmfamily} % ignored currently
+\setbeamerfont{alerted text}{family=\rmfamily}
+\setbeamerfont{example text}{family=\rmfamily}
+
+%% --------------------------------------------------
+\setbeamerfont{structure}{family=\rmfamily}
+\setbeamerfont{tiny structure}{family=\rmfamily, size=\tiny}
+
+%% --------------------------------------------------
+\setbeamerfont{title}{family=\rmfamily,size=\LARGE,parent=structure,series*=b}
+% \setbeamerfont{title}{family=\fontfamily{josefin}\selectfont}
+\setbeamerfont{title in head/foot}{family=\rmfamily,size=\footnotesize}
+\setbeamerfont{title in sidebar}{family=\rmfamily,size=\tiny}
+
+%% --------------------------------------------------
+\setbeamerfont{subtitle}{family=\rmfamily,size=\large,parent=structure}
+
+%% --------------------------------------------------
+\setbeamerfont{author}{family=\rmfamily,size=\normalsize}
+\setbeamerfont{author in head/foot}{family=\rmfamily,size=\footnotesize}
+\setbeamerfont{author in sidebar}{family=\rmfamily,size=\tiny}
+
+%% --------------------------------------------------
+\setbeamerfont{institute}{family=\rmfamily,size=\normalsize}
+\setbeamerfont{institute in head/foot}{family=\rmfamily,size=\footnotesize}
+\setbeamerfont{institute in sidebar}{family=\rmfamily}
+
+%% --------------------------------------------------
+\setbeamerfont{date}{family=\rmfamily}
+\setbeamerfont{date in head/foot}{family=\rmfamily,size=\footnotesize}
+\setbeamerfont{date in sidebar}{family=\rmfamily}
+
+%% --------------------------------------------------
+\setbeamerfont{part name}{family=\rmfamily,size=\Large}
+\setbeamerfont{part title}{parent=title}
+
+%% --------------------------------------------------
+\setbeamerfont{section in toc}{parent=structure}
+\setbeamerfont{section in toc shaded}{parent=section in toc}
+\setbeamerfont{section in head/foot}{family=\rmfamily,size=\footnotesize}
+\setbeamerfont{section in sidebar}{family=\rmfamily,size=\tiny}
+\setbeamerfont{section number projected}{size=\small,parent={section in toc,projected text}}
+
+\setbeamertemplate{section in toc}[sections numbered]
+\setbeamertemplate{subsection in toc}[subsections numbered]
+
+%% --------------------------------------------------
+\setbeamerfont{subsection in toc}{family=\rmfamily, size=\scriptsize}
+\setbeamerfont{subsection in toc shaded}{parent=subsection in toc}
+\setbeamerfont{subsection in head/foot}{family=\rmfamily,size=\footnotesize}
+\setbeamerfont{subsection in sidebar}{family=\rmfamily}
+
+%% --------------------------------------------------
+\setbeamerfont{subsubsection in toc}{family=\rmfamily,size=\footnotesize}
+\setbeamerfont{subsubsection in toc shaded}{parent=subsubsection in toc}
+\setbeamerfont{subsubsection in head/foot}{family=\rmfamily,size=\footnotesize}
+\setbeamerfont{subsubsection in sidebar}{family=\rmfamily}
+
+%% --------------------------------------------------
+\setbeamerfont{headline}{parent={tiny structure}}
+\setbeamerfont{footline}{parent={tiny structure}, family=\rmfamily,size=\footnotesize}
+
+%% --------------------------------------------------
+\setbeamerfont{sidebar}{size=\Tiny,parent={tiny structure}}
+\setbeamerfont{sidebar left}{parent=sidebar}
+\setbeamerfont{sidebar right}{parent=sidebar}
+
+%% --------------------------------------------------
+\setbeamerfont{page number}{family=\rmfamily}
+\setbeamerfont{page number in head/foot}{family=\rmfamily,size=\Large,series*=b}
+
+%% --------------------------------------------------
+\setbeamerfont{frametitle}{parent=structure,size=\Large,series*=b}
+\setbeamerfont{framesubtitle}{parent=frametitle,size=\footnotesize}
+
+%% --------------------------------------------------
+\setbeamerfont{caption}{family=\rmfamily,size=\small}
+\setbeamerfont{caption name}{parent={structure,caption}}
+
+%% --------------------------------------------------
+\setbeamerfont{button}{family=\rmfamily,size=\tiny}
+
+%% --------------------------------------------------
+\setbeamerfont{block body}{family=\rmfamily}
+\setbeamerfont{block body alerted}{family=\rmfamily}
+\setbeamerfont{block body example}{family=\rmfamily}
+\setbeamerfont{block title}{family=\rmfamily,size=\large,series=\bfseries,parent={structure,block body}}
+\setbeamerfont{block title alerted}{parent={block title,alerted text}}
+\setbeamerfont{block title example}{parent={block title,example text}}
+
+%% --------------------------------------------------
+\setbeamerfont{item}{parent=structure}
+\setbeamerfont{subitem}{parent=item}
+\setbeamerfont{subsubitem}{parent=subitem}
+
+%% --------------------------------------------------
+\setbeamerfont{item projected}{size=\tiny,parent={item,projected text}}
+\setbeamerfont{subitem projected}{parent=item projected}
+\setbeamerfont{subsubitem projected}{parent=subitem projected}
+
+%% --------------------------------------------------
+\setbeamerfont{itemize item}{parent=item}
+\setbeamerfont{itemize subitem}{parent=subitem}
+\setbeamerfont{itemize subsubitem}{parent=subsubitem}
+
+%% --------------------------------------------------
+\setbeamerfont{enumerate item}{parent=item}
+\setbeamerfont{enumerate subitem}{parent=subitem}
+\setbeamerfont{enumerate subsubitem}{parent=subsubitem}
+
+%% --------------------------------------------------
+\setbeamerfont{itemize/enumerate body}{family=\rmfamily}
+\setbeamerfont{itemize/enumerate subbody}{family=\rmfamily,size=\small}
+\setbeamerfont{itemize/enumerate subsubbody}{family=\rmfamily,size=\footnotesize}
+
+%% --------------------------------------------------
+\setbeamerfont{description item}{parent=item}
+
+%% --------------------------------------------------
+\setbeamerfont{projected text}{parent={tiny structure}}
+
+%% --------------------------------------------------
+\setbeamerfont{abstract}{family=\rmfamily,size=\small}
+\setbeamerfont{abstract title}{parent={abstract,structure},size=\normalsize}
+
+%% --------------------------------------------------
+\setbeamerfont{verse}{family=\rmfamily,,shape=\itshape}
+
+%% --------------------------------------------------
+\setbeamerfont{quotation}{family=\rmfamily,shape=\itshape}
+\setbeamerfont{quote}{parent=quotation}
+
+%% --------------------------------------------------
+\setbeamerfont{note page}{family=\rmfamily,size=\small}
+
+\mode<all>

@@ -1,0 +1,167 @@
+\ProvidesPackage{beamerouterthemejampa}
+
+\RequirePackage{calc}
+\RequirePackage{tikz}
+\RequirePackage{graphicx}
+\RequirePackage{ifthen}
+\RequirePackage{commonjampa}
+
+
+%% ================================================== Lengths
+\newlength\jampa@background@titlepage@imageblock@height
+\newlength\jampa@background@titlepage@titleblock@height
+\newlength\jampa@background@footerbar@height
+
+\setlength{\jampa@background@titlepage@imageblock@height}{0.1\paperheight}
+\setlength{\jampa@background@titlepage@titleblock@height}{
+	\paperheight
+	- \jampa@background@titlepage@imageblock@height
+}
+\setlength{\jampa@background@footerbar@height}{0.051\paperheight}
+
+\mode<presentation>
+
+%% ================================================== disable navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+%% ================================================== background canvas
+\setbeamertemplate{background canvas}{
+  \usebeamercolor{background canvas}
+  \begin{tikzpicture}[remember picture,overlay]
+    %% -------------------------------------------------- bounding box
+    \useasboundingbox (current page.south west) rectangle ++ (\paperwidth, \paperheight);%
+
+    \ifx\jampa@background@image\@empty
+      %% -------------------------------------------------- paint canvas
+      \fill[background canvas.bg]
+        (current page.south west)
+        rectangle
+        ++(\paperwidth, \paperheight);
+    \else
+      %% -------------------------------------------------- print image
+      \node[
+        anchor=north west,
+        inner sep=0pt,
+        outer sep=0pt,
+        opacity=0.5
+      ] at (current page.north west) {
+        \includegraphics[width=1.000\paperwidth]{\jampa@background@image}
+      };
+    \fi
+  \end{tikzpicture}
+}
+
+%% ================================================== background
+\setbeamertemplate{background}{
+  \begin{tikzpicture}[remember picture,overlay]
+    %% -------------------------------------------------- bounding box
+    \useasboundingbox (current page.south west) rectangle ++ (\paperwidth, \paperheight);%
+
+    \ifnum\thepage=1\relax%
+			%% -------------------------------------------------- title graphics block
+			\fill[jampa@colour@white]
+				(current page.north west)
+				rectangle
+				++(\paperwidth, -\jampa@background@titlepage@imageblock@height);
+
+			\path (current page.north west) ++ (0.05\paperwidth,-0.005\paperheight) node [anchor=north west, inner sep=0.5em, outer sep=0pt] {\usebeamercolor{titlegraphic}\inserttitlegraphic};
+
+      %% -------------------------------------------------- main cover block
+      \fill[jampa@colour@blue]
+        (current page.north west)
+				++(0, -\jampa@background@titlepage@imageblock@height)
+        rectangle
+        ++(\paperwidth, -\jampa@background@titlepage@titleblock@height);
+
+    \else%
+      %% -------------------------------------------------- footer block
+      \usebeamercolor{footline}
+      \fill[footline.bg]
+        (current page.south west)
+        rectangle
+        ++(\paperwidth, \jampa@background@footerbar@height);
+    \fi
+  \end{tikzpicture}
+}
+
+%% ================================================== footline
+\setbeamertemplate{footline}{
+  \ifnum\thepage>1\relax%
+    \begin{tikzpicture}[remember picture,overlay]
+      %% -------------------------------------------------- bounding box
+      \useasboundingbox (current page.south west) rectangle ++ (\paperwidth, \paperheight);
+
+      %% -------------------------------------------------- west
+      \path
+        (current page.south west) ++(+20pt, 0.5\jampa@background@footerbar@height)
+      node [
+        anchor=west,
+        color={footline.fg},
+      ] {
+        \usebeamerfont{footline}
+        \insertshortauthor
+      };
+
+      %% -------------------------------------------------- centre
+      \path
+        (current page.south) ++(0, 0.5\jampa@background@footerbar@height)
+      node [
+        anchor=center,
+        color={footline.fg},
+      ] {
+        \usebeamerfont{footline}
+				\ifx\insertsectionhead\@empty%
+					\insertshorttitle\
+				\else%
+					\insertshorttitle\ -- \insertsectionhead
+				\fi%
+      };
+
+      %% -------------------------------------------------- east
+      \path
+        (current page.south east) ++(-20pt, 0.5\jampa@background@footerbar@height)
+      node [
+        anchor=east,
+        color={footline.fg},
+      ] {
+        \usebeamerfont{footline}
+        \insertframenumber{}{} \textbar\ \inserttotalframenumber
+      };
+    \end{tikzpicture}
+  \fi
+}
+
+%% ================================================== frame title
+\setbeamertemplate{frametitle}{%
+  \ifnum\thepage>1\relax% Not on title frame
+    \vspace{0.05\paperheight}%
+    \vbox to 0.060\paperheight{% Start vbox
+      \parbox[top]{0.85\linewidth}{% Start parbox
+        \begin{flushleft}%
+          \vspace{-\baselineskip}% Cosmetic correction for space introduced by flushleft
+          {%
+            \usebeamerfont{frametitle}%
+            \usebeamercolor[fg]{frametitle}%
+            \insertframetitle%
+            \par%
+            \vspace{-\baselineskip}%
+          }%
+          {%
+            \usebeamerfont{framesubtitle}%
+            \usebeamercolor[fg]{framesubtitle}%
+            \ifx\insertframesubtitle\@empty%
+            \else%
+              \vspace{\baselineskip}%
+              \insertframesubtitle%
+              \vspace{-\baselineskip}%
+            \fi%
+          }%
+        \end{flushleft}%
+        \vspace{-\baselineskip}% Cosmetic correction for space introduced by flushleft
+      }% End parbox
+      \vfill%
+    }% End vbox
+  \fi% End if - Not on title frame
+}
+
+\mode<all>

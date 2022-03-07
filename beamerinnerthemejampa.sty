@@ -1,0 +1,58 @@
+\ProvidesPackage{beamerinnerthemejampa}
+
+\RequirePackage{geometry}
+\RequirePackage{commonjampa}
+
+
+\mode<presentation>
+
+%% ================================================== title page
+
+%% -------------------------------------------------- titlem subtitle, author and date
+\def\jampa@titlepage{
+  \begin{tikzpicture}[remember picture, overlay]
+    \path (current page.south west) ++(0.490\paperwidth, 0.30\paperheight) node [anchor=base,inner sep=0pt,outer sep=0pt] {%
+
+      \parbox{0.850\paperwidth}{
+        {%
+          \usebeamerfont{title}%
+          \usebeamercolor[fg]{title}%
+          \inserttitle%
+        }%
+        \ifx\insertsubtitle\@empty%
+        \else{%
+          \usebeamerfont{subtitle}
+          \usebeamercolor[fg]{subtitle}
+          \vspace{1em}%
+          \\%
+          \insertsubtitle%
+					\vspace{3em}%
+          \\
+					\begin{flushright}
+	          \usebeamerfont{author}
+						\insertauthor
+						\vspace{0.5em}
+						\\%
+          	\scriptsize
+          	\insertdate
+					\end{flushright}
+        }%
+        \fi%
+
+      }%
+
+    };
+  \end{tikzpicture}
+}
+
+%% --------------------------------------------------
+\setbeamertemplate{title page}{
+  \jampa@titlepage
+}
+
+%% ==================================================
+\setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{itemize subitem}[circle]
+\setbeamertemplate{blocks}[rounded][shadow=true]
+
+\mode<all>
